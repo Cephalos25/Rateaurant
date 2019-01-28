@@ -14,12 +14,11 @@ public class Restaurant {
 
     public Restaurant() {}
 
-    public Restaurant(String name, String style, String websiteLink, String address, int price) {
+    public Restaurant(String name, String style, String websiteLink, String address) {
         this.name = name;
         this.style = style;
         this.websiteLink = websiteLink;
         this.address = address;
-        this.price = price;
     }
 
     public Restaurant(String name, String style, double personalRating, String websiteLink, String address, int price) {
@@ -71,6 +70,14 @@ public class Restaurant {
         this.address = address;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +
@@ -79,6 +86,7 @@ public class Restaurant {
                 ", personalRating=" + personalRating +
                 ", websiteLink='" + websiteLink + '\'' +
                 ", address='" + address + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

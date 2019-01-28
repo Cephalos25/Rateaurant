@@ -28,8 +28,8 @@ public class RestaurantListActivity extends AppCompatActivity {
         Backendless.Data.of(Restaurant.class).find(new AsyncCallback<List<Restaurant>>() {
             @Override
             public void handleResponse(List<Restaurant> response) {
-                ArrayAdapter<Restaurant> adapter = new ArrayAdapter<Restaurant>(RestaurantListActivity.this,
-                        android.R.layout.simple_list_item_1, response);
+                RestaurantAdapter adapter = new RestaurantAdapter(RestaurantListActivity.this,
+                        R.layout.item_restaurantlist, response);
                 listViewRestaurant.setAdapter(adapter);
             }
 
