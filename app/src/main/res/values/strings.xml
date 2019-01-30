@@ -10,4 +10,6 @@
     <string name="createaccount_email">E-mail</string>
     <string name="createaccount_username">Username</string>
     <string name="createaccount_createtext">Create Account</string>
+    <string name="restaurant_linkind">Or Online At:</string>
+    <string name="restaurant_placeind">Find Them At:</string>
 </resources>

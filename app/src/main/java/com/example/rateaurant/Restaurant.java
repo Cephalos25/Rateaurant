@@ -1,6 +1,9 @@
 package com.example.rateaurant;
 
-public class Restaurant {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Restaurant implements Parcelable{
 
     // keep track of name, style, rating, website link, price, location
     private String name;
@@ -29,6 +32,42 @@ public class Restaurant {
         this.address = address;
         this.price = price;
     }
+
+    protected Restaurant(Parcel in) {
+        name = in.readString();
+        style = in.readString();
+        personalRating = in.readDouble();
+        websiteLink = in.readString();
+        address = in.readString();
+        price = in.readInt();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(style);
+        dest.writeDouble(personalRating);
+        dest.writeString(websiteLink);
+        dest.writeString(address);
+        dest.writeInt(price);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
 
     public String getName() {
         return name;
