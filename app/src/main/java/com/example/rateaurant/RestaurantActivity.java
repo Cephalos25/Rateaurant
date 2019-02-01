@@ -3,6 +3,7 @@ package com.example.rateaurant;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -18,7 +19,6 @@ public class RestaurantActivity extends AppCompatActivity {
     private TextView priceView;
     private TextView editButton;
 
-    private Intent receivedIntent;
     private Restaurant receivedRestaurant = null;
 
     @Override
@@ -26,10 +26,34 @@ public class RestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        receivedIntent = getIntent();
+        Intent receivedIntent = getIntent();
         receivedRestaurant = receivedIntent.getParcelableExtra("editedRestaurant");
 
         wireWidgets();
+        populateViews(receivedRestaurant);
+        setListeners();
+    }
+
+    private void setListeners() {
+        editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void populateViews(Restaurant restaurant) {
+        nameView.setText(restaurant.getName());
+        styleView.setText(restaurant.getStyle());
+        linkView.setText(restaurant.getWebsiteLink());
+        addressView.setText(restaurant.getAddress());
+        ratingBar.setRating((float) restaurant.getRating());
+        String price = "";
+        for (int i = 0; i < restaurant.getPrice(); i++) {
+            price = price.concat("$");
+        }
+        priceView.setText(price);
     }
 
     private void wireWidgets() {

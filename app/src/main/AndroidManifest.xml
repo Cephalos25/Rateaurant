@@ -20,7 +20,8 @@
         </activity>
         <activity android:name=".CreateAccountActivity" />
         <activity android:name=".RestaurantListActivity" />
-        <activity android:name=".RestaurantActivity"></activity>
+        <activity android:name=".RestaurantActivity" />
+        <activity android:name=".EditRestaurantActivity"></activity>
     </application>
 
 </manifest>

@@ -41,11 +41,11 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
 
         String price = "";
         for (int i = 0; i < currentRestaurant.getPrice(); i++) {
-            price += "$";
+            price = price.concat("$");
         }
         textViewPrice.setText(price);
 
-        ratingBar.setRating((float) currentRestaurant.getPersonalRating());
+        ratingBar.setRating((float) currentRestaurant.getRating());
 
         return convertView;
     }
