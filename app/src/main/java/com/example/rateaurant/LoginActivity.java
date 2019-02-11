@@ -79,6 +79,8 @@ public class LoginActivity extends AppCompatActivity {
             public void handleResponse(BackendlessUser response) {
                 // Start new Activity here
                 // occurs on login success
+                fieldUsername.setText("");
+                fieldPassword.setText("");
                 Intent intent = new Intent(LoginActivity.this, RestaurantListActivity.class);
                 startActivity(intent);
             }

@@ -3,6 +3,9 @@ package com.example.rateaurant;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -42,6 +45,7 @@ public class RestaurantListActivity extends AppCompatActivity {
                 finish();
             }
         });
+        registerForContextMenu(listViewRestaurant);
     }
 
     private void populateViews() {
@@ -72,5 +76,40 @@ public class RestaurantListActivity extends AppCompatActivity {
 
     private void wireWidgets() {
         listViewRestaurant = findViewById(R.id.listview_restaurants_list);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_restaurantlist_delete, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)
+                item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.item_deletemenu_delete:
+                deleteRestaurant(info.id);
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
+    private void deleteRestaurant(long id) {
+        Backendless.Persistence.of(Restaurant.class).remove(restaurantList.get((int) id),
+                new AsyncCallback<Long>() {
+                    @Override
+                    public void handleResponse(Long response) {
+
+                    }
+
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+
+                    }
+                });
     }
 }

@@ -35,7 +35,6 @@ public class CreateAccountActivity extends AppCompatActivity {
     private String password;
     private String confirmPassword;
     private String email;
-    private List<String> accountInfoList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

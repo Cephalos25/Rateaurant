@@ -18,6 +18,7 @@ public class RestaurantActivity extends AppCompatActivity {
     private RatingBar ratingBar;
     private TextView priceView;
     private TextView editButton;
+    private TextView backButton;
 
     private Restaurant receivedRestaurant = null;
 
@@ -36,6 +37,14 @@ public class RestaurantActivity extends AppCompatActivity {
 
     private void setListeners() {
         editButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent editRestaurantIntent = new Intent(RestaurantActivity.this,
+                        EditRestaurantActivity.class);
+                editRestaurantIntent.putExtra("editedRestaurant", receivedRestaurant);
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -66,5 +75,6 @@ public class RestaurantActivity extends AppCompatActivity {
         ratingBar = findViewById(R.id.ratingBar_restaurant_rating);
         priceView = findViewById(R.id.textView_restaurant_price);
         editButton = findViewById(R.id.textView_restaurant_edit);
+        backButton = findViewById(R.id.textView_restaurant_back);
     }
 }
