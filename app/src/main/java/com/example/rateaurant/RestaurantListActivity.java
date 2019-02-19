@@ -1,8 +1,10 @@
 package com.example.rateaurant;
 
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.backendless.Backendless;
 import com.backendless.async.callback.AsyncCallback;
@@ -21,6 +24,8 @@ import java.util.List;
 public class RestaurantListActivity extends AppCompatActivity {
 
     private ListView listViewRestaurant;
+    private FloatingActionButton fab;
+    private TextView backButton;
 
     private List<Restaurant> restaurantList;
 
@@ -30,8 +35,14 @@ public class RestaurantListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_restaurant_list);
 
         wireWidgets();
-        populateViews();
         setListeners();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        populateViews();
     }
 
     private void setListeners() {
@@ -46,6 +57,36 @@ public class RestaurantListActivity extends AppCompatActivity {
             }
         });
         registerForContextMenu(listViewRestaurant);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newRestaurantIntent = new Intent(RestaurantListActivity.this,
+                        EditRestaurantActivity.class);
+                newRestaurantIntent.putExtra("activity", "create");
+                startActivity(newRestaurantIntent);
+            }
+        });
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent logoutIntent = new Intent(RestaurantListActivity.this,
+                        LoginActivity.class);
+                logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Backendless.UserService.logout(new AsyncCallback<Void>() {
+                    @Override
+                    public void handleResponse(Void response) {
+
+                    }
+
+                    @Override
+                    public void handleFault(BackendlessFault fault) {
+
+                    }
+                });
+                startActivity(logoutIntent);
+
+            }
+        });
     }
 
     private void populateViews() {
@@ -76,6 +117,8 @@ public class RestaurantListActivity extends AppCompatActivity {
 
     private void wireWidgets() {
         listViewRestaurant = findViewById(R.id.listview_restaurants_list);
+        fab = findViewById(R.id.floatingActionButton_restaurantlist_add);
+        backButton = findViewById(R.id.textView_restaurantlist_back);
     }
 
     @Override

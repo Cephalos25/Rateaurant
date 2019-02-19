@@ -131,14 +131,26 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText_editrestaurant_link" />
 
-    <Spinner
-        android:id="@+id/spinner_editrestaurant_price"
-        android:layout_width="193dp"
+    <SeekBar
+        android:id="@+id/seekBar_editrestaurant_price"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="107dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:max="4"
+        android:progress="2"
+        app:layout_constraintStart_toEndOf="@+id/textView_editrestaurant_priceindicator"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar_editrestaurant_rating" />
+
+    <TextView
+        android:id="@+id/textView_editrestaurant_priceindicator"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:entries="@array/editrestaurant_pricesigns"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="8dp"
+        android:text="Price:"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingBar_editrestaurant_rating" />
+
 </android.support.constraint.ConstraintLayout>

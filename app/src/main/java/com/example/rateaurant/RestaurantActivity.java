@@ -42,12 +42,18 @@ public class RestaurantActivity extends AppCompatActivity {
                 Intent editRestaurantIntent = new Intent(RestaurantActivity.this,
                         EditRestaurantActivity.class);
                 editRestaurantIntent.putExtra("editedRestaurant", receivedRestaurant);
+                editRestaurantIntent.putExtra("activity", "edit");
+                startActivity(editRestaurantIntent);
             }
         });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent goBackIntent = new Intent(RestaurantActivity.this,
+                        RestaurantListActivity.class);
+                goBackIntent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(goBackIntent);
+                finish();
             }
         });
     }
