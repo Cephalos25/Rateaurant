@@ -29,7 +29,7 @@ public class RestaurantAdapter extends ArrayAdapter<Restaurant> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         // Overrides the ArrayAdapter's getView with a method similar to fragments
         if(convertView == null){
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_restaurantlist, parent);
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_restaurantlist, parent, false);
         }
 
         TextView textViewName = convertView.findViewById(R.id.textView_restaurantitem_name);

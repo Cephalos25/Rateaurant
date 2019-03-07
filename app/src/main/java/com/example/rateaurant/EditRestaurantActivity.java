@@ -62,7 +62,7 @@ public class EditRestaurantActivity extends AppCompatActivity {
         addressField.setText(restaurant.getAddress());
         websiteLinkField.setText(restaurant.getWebsiteLink());
         ratingBar.setRating((float) restaurant.getRating());
-        seekBarPrice.setProgress(restaurant.getPrice());
+        seekBarPrice.setProgress(restaurant.getPrice()-1);
     }
 
     private void setListeners() {
@@ -93,7 +93,7 @@ public class EditRestaurantActivity extends AppCompatActivity {
                     receivedRestaurant.setAddress(addressField.getText().toString());
                     receivedRestaurant.setWebsiteLink(websiteLinkField.getText().toString());
                     receivedRestaurant.setRating(ratingBar.getRating());
-                    receivedRestaurant.setPrice(seekBarPrice.getProgress());
+                    receivedRestaurant.setPrice(seekBarPrice.getProgress()+1);
                     Backendless.Persistence.of(Restaurant.class).save(receivedRestaurant, new AsyncCallback<Restaurant>() {
                         @Override
                         public void handleResponse(Restaurant response) {

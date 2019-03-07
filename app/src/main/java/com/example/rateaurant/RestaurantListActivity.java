@@ -116,7 +116,7 @@ public class RestaurantListActivity extends AppCompatActivity {
     }
 
     private void wireWidgets() {
-        listViewRestaurant = findViewById(R.id.listview_restaurants_list);
+        listViewRestaurant = findViewById(R.id.listView_restaurantlist_restaurants);
         fab = findViewById(R.id.floatingActionButton_restaurantlist_add);
         backButton = findViewById(R.id.textView_restaurantlist_back);
     }
